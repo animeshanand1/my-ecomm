@@ -1,0 +1,8 @@
+.promoStrip {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}

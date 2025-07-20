@@ -1,0 +1,57 @@
+.newsletterSection {
+  background-color: var(--secondary-color);
+  text-align: center;
+  padding: 60px 0;
+}
+
+.newsletterSection h2 {
+  margin-bottom: 10px;
+}
+
+.newsletterSection p {
+  color: var(--light-text-color);
+  margin-bottom: 30px;
+}
+
+.newsletterForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 500px;
+  margin: 0 auto;
+  gap: 10px;
+}
+
+.newsletterForm input {
+  flex-grow: 1;
+  padding: 12px 15px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  font-size: 1rem;
+}
+
+.newsletterForm input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.newsletterForm button {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  padding: 12px 25px;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.newsletterForm button:hover {
+  background-color: #56487a;
+}
+
+@media (min-width: 768px) {
+  .newsletterForm {
+    flex-direction: row;
+  }
+}

@@ -1,0 +1,14 @@
+[
+  { "id": 1, "name": "Classic Cotton Tee", "category": "Men", "brand": "Aura Basics", "price": 25, "rating": 4.5, "imageUrl": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60" },
+  { "id": 2, "name": "Flowy Summer Dress", "category": "Women", "brand": "Chic Coutures", "price": 75, "rating": 4.8, "imageUrl": "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60" },
+  { "id": 3, "name": "Dino Graphic Tee", "category": "Kids", "brand": "Tiny Tots", "price": 18, "rating": 4.9, "imageUrl": "https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60" },
+  { "id": 4, "name": "Performance Sneakers", "category": "Men", "brand": "Zenith", "price": 120, "rating": 4.7, "imageUrl": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60" },
+  { "id": 5, "name": "Silk Blend Scarf", "category": "Women", "brand": "Chic Coutures", "price": 45, "rating": 4.6, "imageUrl": "https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60" },
+  { "id": 6, "name": "Rugged Denim Jeans", "category": "Men", "brand": "Aura Basics", "price": 85, "rating": 4.3, "imageUrl": "https://images.unsplash.com/photo-1602293589930-4535a9a7c6e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60" },
+  { "id": 7, "name": "Leather Ankle Boots", "category": "Women", "brand": "Zenith", "price": 150, "rating": 4.9, "imageUrl": "https://images.unsplash.com/photo-1603525543140-629a4a42b6e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60" },
+  { "id": 8, "name": "Sporty Hoodie", "category": "Kids", "brand": "Tiny Tots", "price": 40, "rating": 4.8, "imageUrl": "https://images.unsplash.com/photo-1556812191-381c7e2b7c7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60" },
+  { "id": 9, "name": "Slim Fit Chinos", "category": "Men", "brand": "Aura Basics", "price": 60, "rating": 4.2, "imageUrl": "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60" },
+  { "id": 10, "name": "Knit Sweater", "category": "Women", "brand": "Chic Coutures", "price": 90, "rating": 4.7, "imageUrl": "https://images.unsplash.com/photo-1552047613-647a242a04de?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60" },
+  { "id": 11, "name": "Waterproof Jacket", "category": "Men", "brand": "Zenith", "price": 180, "rating": 4.9, "imageUrl": "https://images.unsplash.com/photo-1591242334032-6c1719a4e29d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60" },
+  { "id": 12, "name": "High-Waist Leggings", "category": "Women", "brand": "Zenith", "price": 55, "rating": 4.6, "imageUrl": "https://images.unsplash.com/photo-1612871689353-cccf581d8ec4?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=60" }
+]
