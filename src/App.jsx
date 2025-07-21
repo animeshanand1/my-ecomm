@@ -22,6 +22,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="/products" element={<ProductListingPage />} />
         <Route path="/category/:slug" element={<ProductListingPage />} />
+        <Route path="/cart" element={<MyCartPage />} />
       </Route>
       <Route path="/account" element={<AccountPage />}>
         <Route index element={<Navigate to="details" replace />} />
@@ -30,9 +31,7 @@ function App() {
         <Route path="address-book" element={<MyAddressBook />} />
         <Route path="settings" element={<AccountSettings />} />
         <Route path="newsletters" element={<MyNewsletters />} />
-     
       </Route>
-      <Route path="/cart" element={<MyCartPage/>} />
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/login" element={<LoginPage />} />
     </Routes>
