@@ -10,7 +10,7 @@ const ProductInfo = () => {
     <div className={styles.infoContainer}>
       <p className={styles.category}>Men Fashion</p>
       <h1 className={styles.title}>Loose Fit Hoodie</h1>
-      <p className={styles.price}>$24.99</p>
+      <p className={styles.price}>2040.99 INR</p>
       <div className={styles.deliveryInfo}>
         <span>🕒 Order in <b>02:30:25</b> to get next day delivery</span>
       </div>
