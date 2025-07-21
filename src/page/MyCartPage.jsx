@@ -5,9 +5,9 @@ import CheckoutForm from '../components/CheckoutForm';
 
 const MyCartPage = () => {
   const [cartItems, setCartItems] = useState([
-    { id: 1, name: 'Red T-Shirt', size: 'M', price: 60.00, quantity: 2, image: 'https://i.imgur.com/example-red.png' },
-    { id: 2, name: 'Green T-Shirt', size: 'M', price: 120.00, quantity: 1, image: 'https://i.imgur.com/example-green.png' },
-    { id: 3, name: 'Blue T-Shirt', size: 'M', price: 60.00, quantity: 2, image: 'https://i.imgur.com/example-blue.png' },
+    { id: 1, name: 'Red T-Shirt', size: 'M', price: 60.00, quantity: 2, image: 'https://images.unsplash.com/photo-1575737132307-1fad104f1f67?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmVkJTIwdHNoaXJ0fGVufDB8fDB8fHww' },
+    { id: 2, name: 'Red T-Shirt', size: 'M', price: 120.00, quantity: 1, image: 'https://images.unsplash.com/photo-1551304110-1487f449c468?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVkJTIwdHNoaXJ0fGVufDB8fDB8fHww' },
+    { id: 3, name: 'Blue T-Shirt', size: 'M', price: 60.00, quantity: 2, image: 'https://plus.unsplash.com/premium_photo-1682096261732-88a83f8bb20b?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ymx1ZSUyMHRzaGlydHxlbnwwfHwwfHx8MA%3D%3D' },
   ]);
 
   const handleUpdateQuantity = (itemId, newQuantity) => {
