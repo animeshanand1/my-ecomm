@@ -14,6 +14,7 @@ import AccountSettings from "./components/account/AccountSettings";
 import MyOrders from "./components/account/MyOrders";
 import MyNewsletters from "./components/account/MyNewsletters";
 import MyCartPage from "./page/MyCartPage";
+import ProductDetailPage from "./page/ProductDetailPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/products" element={<ProductListingPage />} />
         <Route path="/category/:slug" element={<ProductListingPage />} />
         <Route path="/cart" element={<MyCartPage />} />
+         <Route path="/product/:id" element={<ProductDetailPage />} />
       </Route>
       <Route path="/account" element={<AccountPage />}>
         <Route index element={<Navigate to="details" replace />} />

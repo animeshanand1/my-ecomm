@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './YouMightAlsoLike.module.css';
-import ProductCard from '../ProductCard/ProductCard';
+import ProductCard from './ProductCard';
 
 const YouMightAlsoLike = () => {
   const similarProducts = [

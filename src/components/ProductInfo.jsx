@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styles from './ProductInfo.module.css';
-import { HeartIcon } from '../../Icons';
-import Accordion from '../Accordion/Accordion';
+import Accordion from './Accordion/Accordion';
 
 const ProductInfo = () => {
   const [selectedSize, setSelectedSize] = useState('S');
@@ -32,7 +31,7 @@ const ProductInfo = () => {
       <div className={styles.actions}>
         <button className={styles.addToCartBtn}>Add to Cart</button>
         <button className={styles.wishlistBtn} aria-label="Add to wishlist">
-          <HeartIcon />
+          
         </button>
       </div>
 
