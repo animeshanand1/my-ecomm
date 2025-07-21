@@ -73,6 +73,21 @@
   text-align: right;
 }
 
+.removeBtn {
+  border: none;
+  background: none;
+  color: #999;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0 8px;
+  margin-left: 16px;
+  transition: color 0.2s ease;
+}
+
+.removeBtn:hover {
+  color: #ff4444;
+}
+
 @media (max-width: 768px) {
   .cartItem {
     flex-wrap: wrap; 
