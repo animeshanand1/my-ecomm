@@ -26,7 +26,7 @@ const Footer = () => {
               <li><Link to='/contact-us'>Contact Us</Link></li>
               <li><a href="#">FAQs</a></li>
               <li><a href="#">Shipping & Returns</a></li>
-              <li><a href="#">Track Order</a></li>
+              <li><Link to="/track-order">Track Order</Link></li>
             </ul>
           </div>
           <div className={styles.footerColumn}>

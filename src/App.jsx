@@ -16,6 +16,7 @@ import MyNewsletters from "./components/account/MyNewsletters";
 import MyCartPage from "./page/MyCartPage";
 import ProductDetailPage from "./page/ProductDetailPage";
 import ContactUs from "./page/ContactUs";
+import OrderTracker from "./page/OrderTracker";
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
         <Route path="/products" element={<ProductListingPage />} />
         <Route path="/category/:slug" element={<ProductListingPage />} />
         <Route path="/cart" element={<MyCartPage />} />
-         <Route path="/product/:id" element={<ProductDetailPage />} />
+        <Route path="/product/:id" element={<ProductDetailPage />} />
+        <Route path="/track-order" element={<OrderTracker />} />
       </Route>
       <Route path="/account" element={<AccountPage />}>
         <Route index element={<Navigate to="details" replace />} />

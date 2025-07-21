@@ -1,0 +1,326 @@
+
+.pageWrapper {
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.trackerContainer {
+  width: 100%;
+  max-width: 1200px;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+}
+
+.card {
+  border: 1px solid black;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+}
+
+.card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.detailsButton {
+  color: black;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+
+.trackingHeader {
+  background: linear-gradient(135deg, #4a90e2, #5463c0);
+  padding: 2.5rem 2rem;
+  color: white;
+}
+
+.trackingHeader h1 {
+  margin: 0 0 2rem 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.progressBar {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.progressBar::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.stage {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.stageIconWrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.stage p {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.stage.completed .stageIconWrapper {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.stage.active .stageIconWrapper {
+  border-color: white;
+  transform: scale(1.1);
+}
+
+.stage.active p {
+  color: white;
+  font-weight: 700;
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.leftColumn, .rightColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.summaryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.summaryItem strong {
+  font-weight: 600;
+}
+
+.carrier {
+  font-weight: 700;
+  font-family: 'Helvetica', sans-serif;
+  color: #4D148C; 
+}
+
+.productItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.productImage {
+    width: 60px;
+    height: 60px;
+    border-radius: 0.5rem;
+    object-fit: cover;
+}
+
+.productDetails {
+    flex-grow: 1;
+}
+
+.productName {
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+}
+
+.productQty {
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.productPrice {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.mapCard {
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.mapImage {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.mapOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    padding: 1.5rem;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deliveryStatus {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.liveTrackLink {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    background-color: rgba(255,255,255,0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    transition: background-color 0.2s;
+}
+
+.liveTrackLink:hover {
+    background-color: rgba(255,255,255,0.4);
+}
+
+.trackingHistory {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.historyItem {
+    display: flex;
+    gap: 1rem;
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+.historyItem:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 30px;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--border-color);
+}
+
+.historyIcon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-light);
+    z-index: 1;
+}
+
+.historyItem:first-child .historyIcon {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.historyDetails p {
+    margin: 0 0 0.25rem 0;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.historyDetails small {
+    color: var(--text-light);
+}
+
+.supportButton {
+  width: 100%;
+  background-color: #343a40;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 1rem;
+}
+
+.supportButton:hover {
+  background-color: #495057;
+}
+
+@media (max-width: 992px) {
+  .mainGrid {
+    grid-template-columns: 1fr;
+  }
+  .pageWrapper {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    .trackingHeader {
+        padding: 1.5rem;
+    }
+    .trackingHeader h1 {
+        font-size: 1.5rem;
+    }
+    .stage p {
+        font-size: 0.75rem;
+    }
+    .stageIconWrapper {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    .mainGrid {
+        padding: 1rem;
+    }
+}
