@@ -14,8 +14,8 @@ const Footer = () => {
           <div className={styles.footerColumn}>
             <h4>Shop</h4>
             <ul>
-              <li><a href="#">Men's</a></li>
-              <li><a href="#">Women's</a></li>
+              <li><Link to="/category/men">Men's</Link></li>
+              <li><Link to="/category/women">Women's</Link></li>
               <li><a href="#">Electronics</a></li>
               <li><a href="#">Home Essentials</a></li>
             </ul>
