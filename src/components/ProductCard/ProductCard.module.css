@@ -1,0 +1,41 @@
+.card {
+  background-color: white;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  text-align: left;
+}
+
+.cardImageContainer {
+  background-color: #e5e7eb;
+}
+
+.cardImage {
+  width: 100%;
+  display: block;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.cardBody {
+  padding: 1rem;
+}
+
+.cardTitle {
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.cardRating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.cardPrice {
+  font-weight: 700;
+}
