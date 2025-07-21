@@ -13,6 +13,7 @@ import MyAddressBook from "./components/account/MyAddressBook";
 import AccountSettings from "./components/account/AccountSettings";
 import MyOrders from "./components/account/MyOrders";
 import MyNewsletters from "./components/account/MyNewsletters";
+import MyCartPage from "./page/MyCartPage";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="newsletters" element={<MyNewsletters />} />
      
       </Route>
+      <Route path="/cart" element={<MyCartPage/>} />
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/login" element={<LoginPage />} />
     </Routes>

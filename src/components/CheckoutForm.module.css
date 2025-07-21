@@ -1,0 +1,134 @@
+.checkoutFormContainer {
+  flex: 1;
+  background-color: #f9f9f9;
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.checkoutHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.checkoutHeader h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.checkoutHeader span {
+  font-size: 16px;
+  font-weight: 600;
+  color: #5d3eff;
+}
+
+.priceSummary {
+  margin-bottom: 24px;
+}
+
+.priceRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.totalRow {
+  font-weight: 700;
+  font-size: 18px;
+  color: #000;
+  margin-top: 16px;
+}
+
+.checkoutForm .formGroup {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkoutForm label {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.checkoutForm input[type="text"],
+.checkoutForm input[type="tel"] {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #fff;
+}
+
+.formGroupRow {
+  display: flex;
+  gap: 16px;
+}
+
+.formGroupRow .formGroup {
+  flex: 1;
+}
+
+.paymentOption {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background-color: #fff;
+}
+
+.paymentOption input[type="radio"] {
+  margin-right: 12px;
+  accent-color: #5d3eff;
+}
+
+.paymentOption label {
+  margin: 0;
+  font-weight: normal;
+  color: #333;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.actionButtons button {
+  flex: 1;
+  padding: 16px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btnCancel {
+  background-color: #f0ecff;
+  color: #5d3eff;
+}
+
+.btnOrder {
+  background-color: #5d3eff;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .formGroupRow {
+    flex-direction: column;
+  }
+
+  .checkoutHeader h2 {
+    font-size: 20px;
+  }
+}

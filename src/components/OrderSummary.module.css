@@ -1,0 +1,29 @@
+.orderSummaryContainer {
+  flex: 1.2;
+  padding-right: 40px;
+}
+
+.orderSummaryContainer h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.couponBtn {
+  width: 100%;
+  padding: 16px;
+  background-color: #212121;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+}
+
+@media (max-width: 992px) {
+  .orderSummaryContainer {
+    padding-right: 0;
+  }
+}

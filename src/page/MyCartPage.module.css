@@ -1,0 +1,24 @@
+.myCartPage {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;;
+  max-width: 1200px;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 992px) {
+  .myCartPage {
+    flex-direction: column;
+    padding: 24px;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .myCartPage {
+    padding: 16px;
+  }
+}
