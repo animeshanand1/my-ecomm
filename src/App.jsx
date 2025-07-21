@@ -15,6 +15,7 @@ import MyOrders from "./components/account/MyOrders";
 import MyNewsletters from "./components/account/MyNewsletters";
 import MyCartPage from "./page/MyCartPage";
 import ProductDetailPage from "./page/ProductDetailPage";
+import ContactUs from "./page/ContactUs";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
       </Route>
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/contact-us" element={<ContactUs />} />
     </Routes>
   );
 }
