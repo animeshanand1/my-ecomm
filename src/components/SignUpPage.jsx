@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styles from './SignUpPage.module.css';
-
 import EyeIcon from '../assets/icons/EyeIcon';
 import GoogleIcon from '../assets/icons/GoogleIcon';
 import AppleIcon from '../assets/icons/AppleIcon';
+import axios from 'axios';
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,13 +20,19 @@ const SignUpPage = () => {
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
-    }));
-  };
+    }));  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form Submitted:', formData);
-    
+    try {
+      const response = await axios.post('http://localhost:5000/api/user/signup', formData);
+      console.log('Registration successful:', response.data);
+      
+    } catch (error) {
+      console.error('Registration failed:', error.response ? error.response.data : error.message);
+      
+    }
+
   };
 
   return (

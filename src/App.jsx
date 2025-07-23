@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import MainLayout from "./components/MainLayout";
+import ProtectedRoute from "./components/PortectedRoute";
 
 import SignUpPage from "./components/SignUpPage";
 import LoginPage from "./components/LoginPage";
@@ -17,8 +18,18 @@ import MyCartPage from "./page/MyCartPage";
 import ProductDetailPage from "./page/ProductDetailPage";
 import ContactUs from "./page/ContactUs";
 import OrderTracker from "./page/OrderTracker";
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem("userToken");
+    if (token) {
+      
+      dispatch(fetchUserProfile());
+    }
+  }, [dispatch]);
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
@@ -29,13 +40,15 @@ function App() {
         <Route path="/product/:id" element={<ProductDetailPage />} />
         <Route path="/track-order" element={<OrderTracker />} />
       </Route>
-      <Route path="/account" element={<AccountPage />}>
-        <Route index element={<Navigate to="details" replace />} />
-        <Route path="details" element={<MyDetails />} />
-        <Route path="orders" element={<MyOrders />} />
-        <Route path="address-book" element={<MyAddressBook />} />
-        <Route path="settings" element={<AccountSettings />} />
-        <Route path="newsletters" element={<MyNewsletters />} />
+      <Route element={<ProtectedRoute />}>
+        <Route path="/account" element={<AccountPage />}>
+          <Route index element={<Navigate to="details" replace />} />
+          <Route path="details" element={<MyDetails />} />
+          <Route path="orders" element={<MyOrders />} />
+          <Route path="address-book" element={<MyAddressBook />} />
+          <Route path="settings" element={<AccountSettings />} />
+          <Route path="newsletters" element={<MyNewsletters />} />
+        </Route>
       </Route>
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/login" element={<LoginPage />} />

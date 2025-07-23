@@ -1,17 +1,27 @@
 import React, { useState } from 'react';
 import styles from './SignUpPage.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import {  loginUser } from '../features/user/userSlice';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import EyeIcon from '../assets/icons/EyeIcon';
 import GoogleIcon from '../assets/icons/GoogleIcon';
 import AppleIcon from '../assets/icons/AppleIcon';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     remember: false,
   });
+  
+  const { loading, error } = useSelector((state) => state.user);
+
+  const from = location.state?.from?.pathname || "/";
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -20,11 +30,13 @@ const LoginPage = () => {
       [name]: type === 'checkbox' ? checked : value
     }));
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Login Form Submitted:', formData);
-    // Add login logic here
+    dispatch(loginUser({ email: formData.email, password: formData.password })).then((result) => {
+      if (result.meta.requestStatus === 'fulfilled') {
+        navigate(from, { replace: true });
+      }
+    });
   };
 
   return (
@@ -103,9 +115,10 @@ const LoginPage = () => {
               </div>
               <a href="/forgot-password" style={{ color: 'var(--accent-purple)', fontSize: '0.95rem', textDecoration: 'none' }}>Forgot password?</a>
             </div>
-            <button type="submit" className={styles.createAccountButton}>
-              Log in
+            <button type="submit" className={styles.createAccountButton} disabled={loading}>
+              {loading ? 'Logging in...' : 'Log in'}
             </button>
+            {error && <p style={{color: 'red', textAlign: 'center', marginTop: '1rem'}}>{error}</p>}
           </form>
 
           <div className={styles.divider}>
