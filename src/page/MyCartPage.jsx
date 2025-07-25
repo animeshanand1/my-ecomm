@@ -1,37 +1,40 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from './MyCartPage.module.css';
 import OrderSummary from '../components/OrderSummary';
 import CheckoutForm from '../components/CheckoutForm';
+import {addItemToCart, removeItemFromCart} from '../features/cart/cartSlice';
 
 const MyCartPage = () => {
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: 'Red T-Shirt', size: 'M', price: 60.00, quantity: 2, image: 'https://images.unsplash.com/photo-1575737132307-1fad104f1f67?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmVkJTIwdHNoaXJ0fGVufDB8fDB8fHww' },
-    { id: 2, name: 'Red T-Shirt', size: 'M', price: 120.00, quantity: 1, image: 'https://images.unsplash.com/photo-1551304110-1487f449c468?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVkJTIwdHNoaXJ0fGVufDB8fDB8fHww' },
-    { id: 3, name: 'Blue T-Shirt', size: 'M', price: 60.00, quantity: 2, image: 'https://plus.unsplash.com/premium_photo-1682096261732-88a83f8bb20b?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ymx1ZSUyMHRzaGlydHxlbnwwfHwwfHx8MA%3D%3D' },
-  ]);
+  const dispatch = useDispatch();
+
+  const { items, totalAmount } = useSelector(state => state.cart);
 
   const handleUpdateQuantity = (itemId, newQuantity) => {
-    if (newQuantity < 1) return;
-    setCartItems(prevItems =>
-      prevItems.map(item =>
-        item.id === itemId ? { ...item, quantity: newQuantity } : item
-      )
-    );
+    const item = items.find(item => item.id === itemId);
+    if (!item) return;
+
+    if (newQuantity > item.quantity) {
+      dispatch(addItemToCart(item)); 
+    } else if (newQuantity < item.quantity) {
+      dispatch(removeItemFromCart(itemId)); 
+    }
   };
 
   const handleRemoveItem = (itemId) => {
-    setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
+    const item = items.find(item => item.id === itemId);
+    if (!item) return;
+
+    for (let i = 0; i < item.quantity; i++) {
+      dispatch(removeItemFromCart(itemId));
+    }
   };
 
-  const calculateTotal = () => {
-    return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-  };
-
-  const subtotal = calculateTotal();
-  const delivery = 0; // Free delivery
+  const subtotal = totalAmount;
+  const delivery = 0; 
   const total = subtotal + delivery;
 
-  if (cartItems.length === 0) {
+  if (items.length === 0) {
     return (
       <div className={styles.emptyCart}>
         <h2>Your Cart is Empty</h2>
@@ -42,16 +45,16 @@ const MyCartPage = () => {
 
   return (
     <div className={styles.myCartPage}>
-      <OrderSummary 
-        items={cartItems}
+      <OrderSummary
+        items={items}
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}
       />
-      <CheckoutForm 
+      <CheckoutForm
         subtotal={subtotal}
         delivery={delivery}
         total={total}
-        itemCount={cartItems.length}
+        itemCount={items.length}
       />
     </div>
   );
