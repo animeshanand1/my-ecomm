@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import MainLayout from "./components/MainLayout";
@@ -19,6 +19,7 @@ import ProductDetailPage from "./page/ProductDetailPage";
 import ContactUs from "./page/ContactUs";
 import OrderTracker from "./page/OrderTracker";
 import { useDispatch } from "react-redux";
+import { fetchUserProfile } from "./features/user/userSlice";
 
 function App() {
   const dispatch = useDispatch();
