@@ -15,7 +15,7 @@ const YouMightAlsoLike = () => {
       <h2 className={styles.likeHeader}>You might also like</h2>
       <div className={styles.productGrid}>
         {similarProducts.map(product => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product._id} product={product} />
         ))}
       </div>
     </section>

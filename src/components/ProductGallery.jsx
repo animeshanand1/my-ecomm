@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
-import styles from './ProductGallery.module.css';
+import React, { useState } from "react";
+import styles from "./ProductGallery.module.css";
 
-const ProductGallery = () => {
-  const [activeImage, setActiveImage] = useState(0);
-  const images = [
-    'https://placehold.co/600x600/8c2a3d/white?text=Hoodie+1',
-    'https://placehold.co/600x600/8c2a3d/white?text=Hoodie+2',
-    'https://placehold.co/600x600/8c2a3d/white?text=Hoodie+3',
-  ];
+const ProductGallery = ({ product }) => {
+  console.log("ProductGallery component rendered with product:", product);
+  const allImages = product.variants.flatMap((variant) =>
+    variant.images.map((img) => img.url)
+  );
+
+  const [activeImage, setActiveImage] = useState(allImages[0]);
 
   return (
     <div className={styles.galleryContainer}>
-      <div className={styles.mainImageContainer}>
-        <img src={images[activeImage]} alt="Loose Fit Hoodie" className={styles.mainImage} />
+      <div className={styles.mainImage}>
+        <img src={activeImage} alt={product.name} />
       </div>
-      <div className={styles.thumbnailContainer}>
-        {images.map((img, index) => (
-          <div 
-            key={index} 
-            className={`${styles.thumbnail} ${index === activeImage ? styles.thumbnailActive : ''}`}
-            onClick={() => setActiveImage(index)}
-          >
-            <img src={img} alt={`Thumbnail ${index + 1}`} className={styles.thumbnailImage} />
-          </div>
+      <div className={styles.thumbnailList}>
+        {allImages.map((img, index) => (
+          <img
+            key={index}
+            src={img}
+            alt={`Thumbnail ${index}`}
+            className={img === activeImage ? styles.activeThumbnail : ""}
+            onClick={() => setActiveImage(img)}
+          />
         ))}
       </div>
     </div>

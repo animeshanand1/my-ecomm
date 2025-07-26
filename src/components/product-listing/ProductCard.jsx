@@ -15,15 +15,16 @@ const StarRating = ({ rating }) => {
 };
 
 const ProductCard = ({ product }) => {
+  
   return (
     <div className={styles.card}>
-      <Link to={`/product/${product.id}`} className={styles.imageContainer}>
+      <Link to={`/product/${product._id}`} className={styles.imageContainer}>
         <img src={product.imageUrl} alt={product.name} />
       </Link>
       <div className={styles.cardBody}>
-        <div className={styles.brand}>{product.brand}</div>
+        <div className={styles.brand}>{product.brand} </div>
         <h3 className={styles.productName}>{product.name}</h3>
-        <div className={styles.price}>${product.price.toFixed(2)}</div>
+        <div className={styles.price}>${product.price}</div>
         <StarRating rating={product.rating} />
       </div>
     </div>

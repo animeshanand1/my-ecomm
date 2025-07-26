@@ -1,110 +1,129 @@
-
-import React, { useState, useEffect, useMemo } from 'react';
-
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  fetchProducts,
+  fetchProductsByCategory,
+  setFilters,
+  setPage,
+  setSort,
+  selectProducts,
+  selectPagination,
+  selectLoading,
+  selectError,
+  selectFilters
+} from '../../features/product/productSlice';
 import ProductFilters from './ProductFilters';
 import ProductGrid from './ProductGrid';
 import styles from './ProductListingPage.module.css';
-import allProductsData from '../../data/products.json';
 
 const PRODUCTS_PER_PAGE = 6;
 
 const ProductListingPage = () => {
-  
   const { slug } = useParams();
-
-  const [allProducts, setAllProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const [filters, setFilters] = useState({
-    category: 'All',
-    brand: 'All',
-    maxPrice: 200,
-    rating: 0,
-  });
-  const [sortOption, setSortOption] = useState('default');
-  const [currentPage, setCurrentPage] = useState(1);
+  const dispatch = useDispatch();
   
-  useEffect(() => {
-    setAllProducts(allProductsData);
-    setLoading(false);
-  }, []);
+  // Redux selectors
+  const products = useSelector(selectProducts);
+  const pagination = useSelector(selectPagination);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
+  const filters = useSelector(selectFilters);
 
+  // Initialize filters based on URL slug
   useEffect(() => {
     if (slug) {
-     
-      const categoryFromSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
-    
-      setFilters(prevFilters => ({
-        ...prevFilters,
-        category: categoryFromSlug,
+      // If we have a slug, fetch products by category
+      dispatch(setFilters({ category: slug }));
+      dispatch(fetchProductsByCategory({ 
+        category: slug,
+        page: pagination.page,
+        limit: PRODUCTS_PER_PAGE 
       }));
     } else {
-     
-      setFilters(prevFilters => ({
-        ...prevFilters,
-        category: 'All',
+      // Otherwise fetch all products
+      dispatch(setFilters({ category: '' }));
+      dispatch(fetchProducts({ 
+        page: pagination.page, 
+        limit: PRODUCTS_PER_PAGE 
       }));
     }
-  }, [slug]); 
+  }, [slug, dispatch]);
 
-  const filteredAndSortedProducts = useMemo(() => {
-    let result = [...allProducts];
-
-    result = result.filter(p => {
-      const categoryMatch = filters.category === 'All' || p.category === filters.category;
-      const brandMatch = filters.brand === 'All' || p.brand === filters.brand;
-      const priceMatch = p.price <= filters.maxPrice;
-      const ratingMatch = p.rating >= filters.rating;
-      return categoryMatch && brandMatch && priceMatch && ratingMatch;
+  // Fetch products when filters or pagination changes
+  useEffect(() => {
+    const params = {
+      ...filters,
+      page: pagination.page,
+      limit: PRODUCTS_PER_PAGE,
+    };
+    
+    // Remove empty values
+    Object.keys(params).forEach(key => {
+      if (params[key] === '' || (Array.isArray(params[key]) && params[key].length === 0)) {
+        delete params[key];
+      }
     });
 
-    switch (sortOption) {
-      case 'price-asc':
-        result.sort((a, b) => a.price - b.price);
-        break;
-      case 'price-desc':
-        result.sort((a, b) => b.price - a.price);
-        break;
-      case 'rating-desc':
-        result.sort((a, b) => b.rating - a.rating);
-        break;
-      default:
-        result.sort((a, b) => a.id - b.id);
-        break;
+    if (filters.category) {
+      dispatch(fetchProductsByCategory({
+        category: filters.category,
+        ...params
+      }));
+    } else {
+      dispatch(fetchProducts(params));
     }
+  }, [filters, pagination.page, dispatch]);
 
-    return result;
-  }, [allProducts, filters, sortOption]);
+  const handleFilterChange = (newFilters) => {
+    dispatch(setFilters(newFilters));
+  };
 
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [filters, sortOption]);
+  const handleSortChange = (sortOption) => {
+    // Map your sort options to API sort parameters
+    const sortMap = {
+      'default': '-createdAt',
+      'price-asc': 'pricing.salePrice',
+      'price-desc': '-pricing.salePrice',
+      'rating-desc': '-ratings.average'
+    };
+    
+    dispatch(setSort(sortMap[sortOption] || '-createdAt'));
+  };
 
-  const totalPages = Math.ceil(filteredAndSortedProducts.length / PRODUCTS_PER_PAGE);
-  const currentProducts = filteredAndSortedProducts.slice(
-    (currentPage - 1) * PRODUCTS_PER_PAGE,
-    currentPage * PRODUCTS_PER_PAGE
-  );
-  
-  if (loading) {
+  const handlePageChange = (page) => {
+    dispatch(setPage(page));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  if (loading && products.length === 0) {
     return <div className={styles.loading}><h2>Loading Products...</h2></div>;
   }
-  
+
+  if (error) {
+    return (
+      <div className={styles.error}>
+        <h2>Error loading products</h2>
+        <p>{error}</p>
+      </div>
+    );
+  }
+
   return (
     <div className={`container ${styles.pageLayout}`}>
       <ProductFilters 
         filters={filters} 
-        setFilters={setFilters} 
-        allProducts={allProducts}
+        setFilters={handleFilterChange} 
+        allProducts={products}
       />
       <ProductGrid 
-        products={currentProducts}
-        sortOption={sortOption}
-        setSortOption={setSortOption}
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={setCurrentPage}
+        products={products}
+        sortOption={filters.sort}
+        setSortOption={handleSortChange}
+        currentPage={pagination.page}
+        totalPages={pagination.pages}
+        onPageChange={handlePageChange}
+        totalProducts={pagination.total}
       />
     </div>
   );

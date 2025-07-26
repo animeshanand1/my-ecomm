@@ -1,9 +1,15 @@
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import styles from './ProductDetailPage.module.css'; 
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  fetchProductById,
+  selectCurrentProduct,
+  selectLoading,
+  selectError,
+  clearCurrentProduct
+} from '../features/product/productSlice';
+import styles from './ProductDetailPage.module.css';
 
-import products from '../data/products.json';
 import ProductInfo from '../components/ProductInfo';
 import RatingAndReviews from '../components/RatingAndReviews';
 import YouMightAlsoLike from '../components/YouMightAlsoLike';
@@ -11,10 +17,32 @@ import ProductGallery from '../components/ProductGallery';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
-  const product = products.find((p) => p.id === parseInt(id));
+  const dispatch = useDispatch();
+
+  const product = useSelector(selectCurrentProduct);
+  console.log('product detail page rendered with product:', product);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchProductById(id));
+    }
+
+    return () => {
+      dispatch(clearCurrentProduct());
+    };
+  }, [id, dispatch]);
+  if (loading) {
+    return <div className={styles.loading}>Loading product details...</div>;
+  }
+
+  if (error) {
+    return <div className={styles.error}>Error: {error}</div>;
+  }
 
   if (!product) {
-    return <div>Product not found</div>;
+    return <div className={styles.error}>Product not found.</div>;
   }
 
   return (

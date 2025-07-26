@@ -4,6 +4,7 @@ import Pagination from './Pagination';
 import styles from './ProductListingPage.module.css';
 
 const ProductGrid = ({ products, sortOption, setSortOption, currentPage, totalPages, onPageChange }) => {
+  console.log('ProductGrid component rendered with products:', products);
   return (
     <main className={styles.mainContent}>
       <div className={styles.toolbar}>
@@ -19,7 +20,7 @@ const ProductGrid = ({ products, sortOption, setSortOption, currentPage, totalPa
       {products.length > 0 ? (
         <div className={styles.productGrid}>
           {products.map(product => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product._id} product={product} /> 
           ))}
         </div>
       ) : (

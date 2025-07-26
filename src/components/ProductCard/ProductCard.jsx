@@ -3,6 +3,7 @@ import styles from './ProductCard.module.css';
 import { StarIcon } from '../../Icons';
 
 const ProductCard = ({ product }) => (
+  console.log('product card rendered with 2:', product),
   <div className={styles.card}>
     <div className={styles.cardImageContainer}>
       <img src={product.image} alt={product.title} className={styles.cardImage} />
